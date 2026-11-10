@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encuesta de Brookies | Dulce Fusion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Barra de navegación superior -->
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <span class="logo-icon">🍪</span>
+        <span class="logo-text">Dulce Fusion</span>
+      </div>
+      <span class="badge">Encuesta de gustos y preferencias</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Sección introductoria -->
+    <section class="intro" id="intro">
+      <div class="intro-card">
+        <div class="intro-icon">📋</div>
+        <h1>¡Hola! Te damos la bienvenida a Dulce Fusion</h1>
+        <p class="intro-text">
+          Somos <strong>Dulce Fusion</strong>, una empresa dedicada a elaborar <strong>brookies</strong>: la deliciosa fusión entre brownie y galleta, hechos con ingredientes de calidad y mucho cariño.
+        </p>
+        <p class="intro-text">
+          Para crear productos que realmente te gusten, necesitamos conocer tus preferencias. Esta encuesta es <strong>anonima y voluntaria</strong>, solo te tomará unos minutos y tus respuestas nos ayudarán a mejorar nuestros sabores, tamaños y precios.
+        </p>
+        <div class="survey-info">
+          <span class="info-item"><span class="info-dot"></span> 4 campos personales</span>
+          <span class="info-item"><span class="info-dot"></span> 6 preguntas del producto</span>
+          <span class="info-item"><span class="info-dot"></span> ~3 minutos estimados</span>
+        </div>
+        <button type="button" class="btn btn-primary btn-large" id="start-btn">Comenzar encuesta</button>
+      </div>
+    </section>
+
+    <!-- Formulario de la encuesta -->
+    <form id="survey-form" class="survey" novalidate>
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-text">
+          <span id="current-step">0</span> de <span id="total-steps">11</span> completado
+        </div>
+      </div>
+
+      <!-- Paso 0: Bienvenida (se muestra al inicio) -->
+      <div class="step" id="step-0">
+        <div class="step-header">
+          <span class="step-number">0</span>
+          <span class="step-title">Información personal</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nombre(s) <span class="required">*</span></label>
+          <input type="text" id="first-name" name="first-name" placeholder="Ej. María" required autocomplete="given-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Apellido(s) <span class="required">*</span></label>
+          <input type="text" id="last-name" name="last-name" placeholder="Ej. López Pérez" required autocomplete="family-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Género <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="gender" value="Femenino" required> Femenino
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="gender" value="Masculino"> Masculino
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="gender" value="Otro"> Otro / Prefiero no decirlo
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Edad <span class="required">*</span></label>
+          <input type="number" id="age" name="age" min="1" max="120" placeholder="Ej. 25" required>
+        </div>
+      </div>
+
+      <!-- Pregunta 1 -->
+      <div class="step" id="step-1">
+        <div class="step-header">
+          <span class="step-number">1</span>
+          <span class="step-title">¿Con qué frecuencia consumirías brookies?</span>
+        </div>
+        <div class="form-group">
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="q1" value="Nunca"> Nunca</label>
+            <label class="radio-label"><input type="radio" name="q1" value="Alguna vez al mes"> Alguna vez al mes</label>
+            <label class="radio-label"><input type="radio" name="q1" value="Variis veces al mes"> Varias veces al mes</label>
+            <label class="radio-label"><input type="radio" name="q1" value="Semanalmente"> Semanalmente</label>
+            <label class="radio-label"><input type="radio" name="q1" value="Diariamente"> Diariamente</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="step" id="step-2">
+        <div class="step-header">
+          <span class="step-number">2</span>
+          <span class="step-title">¿Qué tamaño de brookie prefieres?</span>
+        </div>
+        <div class="form-group">
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="q2" value="Mini individual"> Mini individual (bocado)</label>
+            <label class="radio-label"><input type="radio" name="q2" value="Estándar"> Estándar (para una persona)</label>
+            <label class="radio-label"><input type="radio" name="q2" value="Familiar/para compartir"> Familial / para compartir</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="step" id="step-3">
+        <div class="step-header">
+          <span class="step-number">3</span>
+          <span class="step-title">¿Qué sabores de brookie te interesan?</span>
+          <span class="step-subtitle">Puedes seleccionar varias opciones</span>
+        </div>
+        <div class="form-group">
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="q3" value="Chocolate clásico"> Chocolate clásico</label>
+            <label class="checkbox-label"><input type="checkbox" name="q3" value="Blanco con frutos rojos"> Blanco con frutos rojos</label>
+            <label class="checkbox-label"><input type="checkbox" name="q3" value="Caramelo salado"> Caramelo salado</label>
+            <label class="checkbox-label"><input type="checkbox" name="q3" value="Doble chocolate"> Doble chocolate</label>
+            <label class="checkbox-label"><input type="checkbox" name="q3" value="Vegano / sin gluten"> Vegano / sin gluten</label>
+            <label class="checkbox-label"><input type="checkbox" name="q3" value="Otro"> Otro (especifica en comentarios)</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pregunta 4 -->
+      <div class="step" id="step-4">
+        <div class="step-header">
+          <span class="step-number">4</span>
+          <span class="step-title">¿Cuánto estarías dispuesto a pagar por un brookie individual?</span>
+        </div>
+        <div class="form-group">
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="q4" value="Menos de $1.000"> Menos de $1.000</label>
+            <label class="radio-label"><input type="radio" name="q4" value="$1.000 - $2.000"> $1.000 - $2.000</label>
+            <label class="radio-label"><input type="radio" name="q4" value="$2.000 - $3.500"> $2.000 - $3.500</label>
+            <label class="radio-label"><input type="radio" name="q4" value="$3.500 - $5.000"> $3.500 - $5.000</label>
+            <label class="radio-label"><input type="radio" name="q4" value="Más de $5.000"> Más de $5.000</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pregunta 5 -->
+      <div class="step" id="step-5">
+        <div class="step-header">
+          <span class="step-number">5</span>
+          <span class="step-title">¿Dónde comprarías brookies?</span>
+          <span class="step-subtitle">Puedes seleccionar varias opciones</span>
+        </div>
+        <div class="form-group">
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="q5" value="Tienda física"> Tienda física / local propio</label>
+            <label class="checkbox-label"><input type="checkbox" name="q5" value="Online con delivery"> Online con entrega a domicilio</label>
+            <label class="checkbox-label"><input type="checkbox" name="q5" value="Cafeterías"> Cafeterías y locales aliados</label>
+            <label class="checkbox-label"><input type="checkbox" name="q5" value="Mercados y ferias"> Mercados y ferias emprendedoras</label>
+            <label class="checkbox-label"><input type="checkbox" name="q5" value="Eventos"> Eventos, cumpleaños y catering</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pregunta 6 -->
+      <div class="step" id="step-6">
+        <div class="step-header">
+          <span class="step-number">6</span>
+          <span class="step-title">¿Qué valoras más en un brookie?</span>
+        </div>
+        <div class="form-group">
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="q6" value="Sabor"> Sabor</label>
+            <label class="radio-label"><input type="radio" name="q6" value="Textura"> Textura (crujiente por fuera, suave por dentro)</label>
+            <label class="radio-label"><input type="radio" name="q6" value="Presentación"> Presentación y empaque</label>
+            <label class="radio-label"><input type="radio" name="q6" value="Ingredientes naturales"> Ingredientes naturales y saludables</label>
+            <label class="radio-label"><input type="radio" name="q6" value="Precio"> Precio accesible</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paso final: comentarios opcionales + envío -->
+      <div class="step" id="step-7">
+        <div class="step-header">
+          <span class="step-number">7</span>
+          <span class="step-title">Comentarios adicionales</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">¿Tienes alguna sugerencia, sabor que te gustaría probar o comentario para Dulce Fusion?</label>
+          <textarea id="comments" name="comments" rows="4" placeholder="Tu opinión nos ayuda a mejorar..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-outline" id="prev-btn">Atrás</button>
+          <button type="submit" class="btn btn-primary" id="submit-btn">Enviar encuesta</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Mensaje de éxito -->
+    <div class="success-message hidden" id="success-message">
+      <div class="success-card">
+        <div class="success-icon">✅</div>
+        <h2>¡Gracias por participar!</h2>
+        <p>Hemos recibido tus respuestas. Nos ayudarán a crear los mejores brookies de Dulce Fusion pensando en ti.</p>
+        <div class="success-actions">
+          <button type="button" class="btn btn-outline" onclick="location.reload()">Responder otra vez</button>
+          <a href="#" class="btn btn-text">Visitar Dulce Fusion</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <span class="logo-text" style="color: var(--color-primary); font-weight: 700;">Dulce Fusion</span>
+      <p>Encuesta de gustos y preferencias de brookies &bull; Diseñado para potenciales clientes</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
